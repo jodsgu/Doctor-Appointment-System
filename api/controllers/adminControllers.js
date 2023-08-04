@@ -58,6 +58,7 @@ const changeAccountStatus = async(req,res,next)=>{
       {
         status
       })
+      console.log("1111--->>>",doctor);
      const user = await User.findOne({_id:doctor.userId})
      const notification = user.notification 
      notification.push({

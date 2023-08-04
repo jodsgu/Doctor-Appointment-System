@@ -1,0 +1,93 @@
+.main{
+  padding: 10px;
+  height: 100vh;
+  
+}
+.layout{
+  display: flex;
+}
+.sideber{
+  min-height: 100%;
+  width: 300px;
+  border-radius: 5px;
+  background-color: rgb(94 103 169);
+  box-shadow: 0 0 2px grey;
+  margin-right: 20px;
+  color: white;
+
+}
+
+.content{
+  width: 100%;
+  height: 100%;
+}
+.header{
+  height: 10vh;
+  margin-bottom: 20px;
+  box-shadow: 0 0 2px gray;
+  
+  background-color: rgb(94 103 169);
+}
+.body{
+  height: 85vh;
+  margin-bottom: 20px;
+  box-shadow: 0 0 2px gray;
+ 
+}
+.logo h6 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 20px 0px;
+}
+
+.menu{
+  margin-top: 50px;
+}
+.menuItem{
+  margin-top: 30px;
+}
+.menuItem a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.menuItem i{
+  font-size: 1.2rem;
+  margin:0 15px;
+}
+.active{
+  background-color: white;
+  padding: 10px;
+ 
+}
+.active a, .active i{
+  color: rgb(0, 0, 0);
+  margin: 5px;
+}
+.header-content{
+  display:flex;
+  align-items: center;
+  height: 50px;
+  justify-content: flex-end;
+  margin: 0 15px;
+  
+}
+.header-content i{
+  margin-right: 20px;
+  font-size: 1.2rem;
+
+}
+.header-content a{
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: blue;
+  margin: 0 10px;
+}
+.form-btn{
+  width: 250px !important;
+  margin-top: 30px !important;
+}
+
+.black-placeholder{
+  color: black;
+}

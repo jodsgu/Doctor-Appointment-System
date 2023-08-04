@@ -126,6 +126,7 @@ getUserData = async (req,res,next)=>{
     })
   }else{
     res.status(200).json({
+      success: true,
       message: "User was fetch sucessfully",
       UserDetails:userDetails
 

@@ -6,17 +6,26 @@ const dbConnection = require('./db');
 const userRoutes = require('./api/routes/userRoutes');
 const adminRoutes = require('./api/routes/adminRoutes');
 const doctorRoutes = require('./api/routes/doctorRoutes');
+const cors = require('cors');
+
 dbConnection();
 
 //rest object
 const app = express();
 
+//handel cors policy
+app.use(cors())
 //middlewares
 app.use(express.json());
 app.use(morgan('dev'));
 
 //dotenv config
 dotenv.config();
+
+
+
+
+
 
 
 //route
@@ -56,7 +65,7 @@ app.use((err,req,res,next)=>{
   })
 })
 // port
-const port = process.env.PORT || 6000
+const port = process.env.PORT || 8000
 
 //listen port
 app.listen(port,()=>{
