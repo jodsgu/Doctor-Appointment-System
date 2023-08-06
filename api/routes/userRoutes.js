@@ -43,4 +43,7 @@ router.post('/delete-all-notification',checkLogin,userControllers.deleteAllNotif
 //Get all doctor
 router.post('/getAllDoctors',checkLogin,userControllers.getAllDoctors)
 
+//BOOK APPOINTMENT
+router.post("/book-appointment", checkLogin, userControllers.bookAppointment);
+
 module.exports = router;

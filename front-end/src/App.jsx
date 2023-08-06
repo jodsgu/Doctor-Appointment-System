@@ -14,6 +14,7 @@ import Notification from './pages/Notification'
 import Users from './pages/Admin/Users'
 import Doctors from './pages/Admin/Doctors'
 import Profile from './pages/Doctor/Profile'
+import BookingPage from './pages/BookingPage'
 
 function App() {
   //console.log("----6565-------")
@@ -59,6 +60,13 @@ function App() {
                 <Profile />
               </ProtectedRoutes>
             } />
+            <Route path='/doctor/book-appoinment/:id' element={
+              <ProtectedRoutes>
+                <BookingPage />
+              </ProtectedRoutes>
+            } />
+
+
 
             <Route path='/login' element={
               <PublicRoutes>

@@ -11,6 +11,9 @@ const User = new mongoose.model('User', userScheama)
 const doctorSchema = require('../models/doctorModels');
 const Doctor = new mongoose.model('Doctor',doctorSchema);
 
+const appointmentModel = require("../models/appointmentModel");
+
+
 //user registration
 userSignUp = async (req, res, next) => {
   const errors = validationResult(req);
@@ -280,7 +283,43 @@ const getAllDoctors = async(req,res,next)=>{
   }
 }
 
-module.exports = { userSignUp, loginUser,getUserData,applyDoctor,getAllNotification,deleteAllNotification,getAllDoctors }
+//BOOK APPOINTMENT
+const bookAppointment = async (req, res) => {
+  try {
+    req.body.status = "pending";
+    const newAppointment = new appointmentModel(req.body);
+    await newAppointment.save();
+    const user = await userModel.findOne({ _id: req.body.doctorInfo.userId });
+    user.notifcation.push({
+      type: "New-appointment-request",
+      message: `A nEw Appointment Request from ${req.body.userInfo.name}`,
+      onCLickPath: "/user/appointments",
+    });
+    await user.save();
+    res.status(200).send({
+      success: true,
+      message: "Appointment Book succesfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error While Booking Appointment",
+    });
+  }
+}
+
+
+module.exports = { 
+  userSignUp,
+  loginUser,
+  getUserData,
+  applyDoctor,
+  getAllNotification,
+  deleteAllNotification,
+  getAllDoctors 
+}
 
 
 

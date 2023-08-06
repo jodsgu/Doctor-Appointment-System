@@ -48,7 +48,9 @@ const updateDoctorProfile = async(req,res,next)=>{
 
 const getDoctorById = async(req,res,next)=>{
   try{
+    console.log(">>>>>",req);
     const doctor = await Doctor.findOne({_id: req.body.doctorId})
+    //const doctor = await Doctor.findOne({_id: req.body._id})
     res.status(200).json({
       success:true,
       message: 'Doctor fetch Successfully',
