@@ -46,4 +46,7 @@ router.post('/getAllDoctors',checkLogin,userControllers.getAllDoctors)
 //BOOK APPOINTMENT
 router.post("/book-appointment", checkLogin, userControllers.bookAppointment);
 
+//check Appointment
+router.post("/check-appointment", userControllers.checkAppointment);
+
 module.exports = router;
