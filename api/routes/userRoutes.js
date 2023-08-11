@@ -49,4 +49,7 @@ router.post("/book-appointment", checkLogin, userControllers.bookAppointment);
 //check Appointment
 router.post("/check-appointment", userControllers.checkAppointment);
 
+//AppointmentsList
+router.post("/user-appointments", userControllers.userAppointmentsList);
+
 module.exports = router;

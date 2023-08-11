@@ -356,7 +356,25 @@ const checkAppointment = async (req, res) => {
 };
 
 
-
+const userAppointmentsList = async (req, res) => {
+  try {
+    const appointments = await appointmentModel.find({
+      userId: req.body.userId,
+    });
+    res.status(200).send({
+      success: true,
+      message: "Users Appointments Fetch SUccessfully",
+      data: appointments,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error In User Appointments",
+    });
+  }
+};
 
 module.exports = {
   userSignUp,
@@ -367,7 +385,8 @@ module.exports = {
   deleteAllNotification,
   getAllDoctors,
   bookAppointment,
-  checkAppointment
+  checkAppointment,
+  userAppointmentsList
 }
 
 

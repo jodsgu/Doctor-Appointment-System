@@ -15,6 +15,8 @@ import Users from './pages/Admin/Users'
 import Doctors from './pages/Admin/Doctors'
 import Profile from './pages/Doctor/Profile'
 import BookingPage from './pages/BookingPage'
+import Appointments from './pages/Appointments'
+import DoctorAppointments from './pages/Doctor/DoctorAppointments'
 
 function App() {
   //console.log("----6565-------")
@@ -66,7 +68,23 @@ function App() {
               </ProtectedRoutes>
             } />
 
+            <Route
+              path="/appointments"
+              element={
+                <ProtectedRoutes>
+                  <Appointments />
+                </ProtectedRoutes>
+              }
+            />
 
+            <Route
+              path="/doctor-appointments"
+              element={
+                <ProtectedRoutes>
+                  <DoctorAppointments />
+                </ProtectedRoutes>
+              }
+            />
 
             <Route path='/login' element={
               <PublicRoutes>

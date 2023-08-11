@@ -1,7 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const appointmentModel = require("../models/appointmentModel");
 
-
+//User model create
+const userScheama = require('../models/userModels');
+const User = new mongoose.model('User', userScheama)
 
 //Doctor model create
 const doctorSchema = require('../models/doctorModels');
@@ -65,5 +68,55 @@ const getDoctorById = async(req,res,next)=>{
 
   }
 }
+const doctorAppointments = async(req,res,next)=>{
+  try {
+    const doctor = await Doctor.findOne({ userId: req.body.userId });
+    const appointments = await appointmentModel.find({
+      doctorId: doctor._id,
+    });
+    res.status(200).send({
+      success: true,
+      message: "Doctor Appointments fetch Successfully",
+      data: appointments,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in Doc Appointments",
+    });
+  }
+}
 
-module.exports = { getDoctorInfo,updateDoctorProfile,getDoctorById}
+const updateStatus = async(req,res,next)=>{
+
+  try {
+    const { appointmentsId, status } = req.body;
+    const appointments = await appointmentModel.findByIdAndUpdate(
+      appointmentsId,
+      { status }
+    );
+    const user = await User.findOne({ _id: appointments.userId });
+    const notification = user.notification;
+    notification.push({
+      type: "status-updated",
+      message: `your appointment has been updated ${status}`,
+      onCLickPath: "/doctor-appointments",
+    });
+    await user.save();
+    res.status(200).send({
+      success: true,
+      message: "Appointment Status Updated",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error In Update Status",
+    });
+  }
+}
+
+module.exports = { getDoctorInfo,updateDoctorProfile,getDoctorById,doctorAppointments,updateStatus}
