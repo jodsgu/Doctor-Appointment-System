@@ -9,7 +9,7 @@ const connectDb = async()=>{
     console.log(`MongoDB connected successfully on ${mongoose.connection.host}`);
 
   }catch (err) {
-    console.error('Database connection failed:', err.message);
+    console.error('Database connection failed:', err.message); 
   }
 
 
