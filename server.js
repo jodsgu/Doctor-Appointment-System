@@ -7,7 +7,7 @@ const userRoutes = require('./api/routes/userRoutes');
 const adminRoutes = require('./api/routes/adminRoutes');
 const doctorRoutes = require('./api/routes/doctorRoutes');
 const cors = require('cors');
-
+const path = require('path');
 dbConnection();
 
 //rest object
@@ -64,6 +64,13 @@ app.use((err,req,res,next)=>{
     
   })
 })
+//static file 
+app.use(express.static(path.join(__dirname, './front-end/dist')))
+
+app.get('*', (req,res)=>{
+  res.sendFile(path.join(__dirname, './front-end/dist/index.html' ))
+})
+
 // port
 const port = process.env.PORT || 8000
 
